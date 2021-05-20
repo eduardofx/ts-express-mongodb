@@ -1,5 +1,4 @@
-import 'dotenv/config';
-import bodyParser from 'body-parser';
+import 'dotenv/config'; 
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
@@ -18,8 +17,8 @@ mongoose.connect(DB_URL || '', { useNewUrlParser: true });
 
 // Middlewares
 app.use(morgan('dev')); // log das requisições
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json()); //Used to parse JSON bodies
+app.use(express.urlencoded()); //Parse URL-encoded bodies
 app.use(cors());
 
 // Routes which should handle requests
