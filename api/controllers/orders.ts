@@ -1,6 +1,5 @@
 import { RequestHandler } from "express";
 import mongoose from "mongoose";
-
 import Order from "../models/order";
 import Product from "../models/product";
 
