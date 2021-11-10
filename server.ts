@@ -15,8 +15,11 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.connect(DB_URL || '', { useNewUrlParser: true });
 
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
 // Middlewares
-app.use(morgan('dev')); // log das requisições
+app.use(morgan('dev')); // log das requisições 
 app.use(express.json()); //Used to parse JSON bodies
 app.use(express.urlencoded()); //Parse URL-encoded bodies
 app.use(cors());
