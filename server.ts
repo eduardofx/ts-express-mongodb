@@ -1,6 +1,6 @@
 import 'dotenv/config'; 
 import cors from 'cors';
-import express from 'express';
+import express, { RequestHandler } from 'express';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 
@@ -11,16 +11,18 @@ const { PORT, DB_URL } = process.env;
 // Create the express instance
 const app = express();
 
-mongoose.set('useCreateIndex', true);
-mongoose.set('useUnifiedTopology', true);
-mongoose.connect(DB_URL || '', { useNewUrlParser: true });
+mongoose.connect(DB_URL || '');
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
-  })
+})
 // Middlewares
-app.use(morgan('dev')); // log das requisições 
-app.use(express.json()); //Used to parse JSON bodies
+app.use(morgan('dev') as RequestHandler); // log das requisições 
+app.use(express.json() as RequestHandler); //Used to parse JSON bodies 
+
+app.use(express.json() as RequestHandler);
+app.use(express.urlencoded({ extended: false }) as RequestHandler);
+
 app.use(cors());
 
 // Routes which should handle requests
